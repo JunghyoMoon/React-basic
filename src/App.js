@@ -43,6 +43,18 @@ Food.propTypes = {
 	rating: PropTypes.number,
 };
 
+class Hello extends React {
+	constructor(props) {
+		super(props);
+		this.state = {
+			name: "World",
+			age: 27,
+			married: false,
+			friends: ["Moon", "Lee", "Wade"],
+		};
+	}
+}
+
 function App() {
 	return (
 		<div>
