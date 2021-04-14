@@ -3,25 +3,30 @@ import PropTypes from "prop-types";
 import axios from "axios";
 
 class App extends React.Component {
-	state = {
-		isLoading: true,
-		movies: [],
-	};
+    state = {
+        isLoading: true,
+        movies: [],
+    };
 
-	getMovies = async () => {
-		const movies = await axios.get(
-			"https://yts-proxy.nomadcoders1.now.sh/list_movies.json"
-		);
-	};
+    getMovies = async () => {
+        const {
+            data: {
+                data: { movies },
+            },
+        } = await axios.get(
+            "https://yts-proxy.nomadcoders1.now.sh/list_movies.json"
+        );
+        this.setState({ movies, isLoading: false });
+    };
 
-	componentDidMount() {
-		this.getMovies();
-	}
+    componentDidMount() {
+        this.getMovies();
+    }
 
-	render() {
-		const { isLoading } = this.state;
-		return <div>{isLoading ? "Loading" : "We are ready"}</div>;
-	}
+    render() {
+        const { isLoading } = this.state;
+        return <div>{isLoading ? "Loading" : "We are ready"}</div>;
+    }
 }
 
 export default App;
